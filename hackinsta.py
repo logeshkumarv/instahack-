@@ -150,7 +150,7 @@ print ('')
 
 
 
-for password in instabrute.username,passwords:
+for password in instabrute.passwords:
 	sess = instabrute.Login(password)
 	if sess:
 		print ('[*] Login success %s' % [instabrute.username,password])
